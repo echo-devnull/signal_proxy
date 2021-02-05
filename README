@@ -16,11 +16,9 @@ First you do the terraform thing
 Then you do the Ansible thing
 
 
-## Auto Docs
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
-
 *auto populated information
-
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 
