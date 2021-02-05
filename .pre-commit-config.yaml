@@ -5,7 +5,6 @@ repos:
     - id: tflint
       args:
         - "--module"
-        - "--deep"
         - "--config=.tflint.hcl"
     - id: terraform-validate
     - id: terraform-fmt
