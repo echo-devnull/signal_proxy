@@ -20,13 +20,13 @@ resource "scaleway_account_ssh_key" "signal_ssh_key" {
 resource "scaleway_instance_ip" "signal_ip" {}
 
 resource "scaleway_instance_server" "signal_proxy_server" {
-  type  = "Stardust1-s"
-  image = "debian_stretch"
-  ip_id = scaleway_instance_ip.signal_ip.id
-  name  = "signal_proxy"
-  tags  = ["signal", "proxy"]
-  state = "started"
-  security_group_id= scaleway_instance_security_group.signal_firewall.id
+  type              = "Stardust1-s"
+  image             = "debian_stretch"
+  ip_id             = scaleway_instance_ip.signal_ip.id
+  name              = "signal_proxy"
+  tags              = ["signal", "proxy"]
+  state             = "started"
+  security_group_id = scaleway_instance_security_group.signal_firewall.id
 }
 
 # ##

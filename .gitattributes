@@ -1,2 +1,9 @@
 terraform/scaleway_keys.tf filter=git-crypt diff=git-crypt
-terraform/reverse_dns_variable.tf filter=git-crypt diff=git-crypt
+terraform/secret.tfvars filter=git-crypt diff=git-crypt
+
+id_rsa filter=git-crypt diff=git-crypt
+*.pem filter=git-crypt diff=git-crypt
+*.tfstate filter=git-crypt diff=git-crypt
+
+# never encrypt .gitattributes file
+.gitattributes !filter !diff
