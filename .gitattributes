@@ -1,5 +1,7 @@
 terraform/secret.tfvars filter=git-crypt diff=git-crypt
 terraform/secret.auto.tfvars filter=git-crypt diff=git-crypt
+ansible/inventory/scaleway_inventory.yml filter=git-crypt diff=git-crypt
+ansible/inventory/group_vars/all filter=git-crypt diff=git-crypt
 
 id_rsa filter=git-crypt diff=git-crypt
 *.pem filter=git-crypt diff=git-crypt

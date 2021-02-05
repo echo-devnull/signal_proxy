@@ -1,0 +1,33 @@
+- name: Setup signal-proxy
+  hosts: signal
+  become: yes
+  user: ansible
+  vars:
+    packages:
+      - git
+      - curl
+      - htop
+  roles:
+    - {name: geerlingguy.docker, tags: "docker", "signal"}
+  tasks:
+
+    - name: Install packages
+      package:
+        update_cache: yes
+        name: "{{ packages }}"
+        state: present
+
+    - name: Add docker group to ansible user
+      user:
+        name: ansible
+        groups: docker
+        append: yes
+
+    - name: Clone signal repo
+      git:
+        repo: 'https://github.com/signalapp/Signal-TLS-Proxy.git'
+        dest: /home/ansible/Signal-TLS-Proxy
+      become: no
+
+
+# Unfortunately, from here, things are manual I'm afraid. That is how signal created the software: https://signal.org/blog/help-iran-reconnect/

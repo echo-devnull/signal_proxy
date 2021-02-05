@@ -1,0 +1,6 @@
+- name: Include the bootstrap playbook
+  import_playbook: playbooks/signal-bootstrap.yml
+
+
+- name: Include the bootstrap playbook
+  import_playbook: playbooks/signal-proxy-install.yml

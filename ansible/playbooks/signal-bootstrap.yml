@@ -1,0 +1,73 @@
+# To run:
+# ansible-playbook playbooks/hetzner-bootstrap.yml -u root -k
+
+- name: Setup defaults
+  hosts: signal
+  become: yes
+  user: root
+  tasks:
+
+    - name: Enable systemd time sync
+      service:
+        name: systemd-timesyncd
+        enabled: yes
+        state: started
+
+    - name: Install packages
+      package:
+        update_cache: yes
+        name: "{{ bootstrap_packages }}"
+        state: present
+
+    - name: Add ansible user
+      user:
+        name: ansible
+        comment: ansible automation user
+        update_password: always
+        shell: /bin/bash
+        groups: sudo, adm
+        group: operator
+        state: present
+        append: yes
+
+    - name: Add ssh key to ansible and root user
+      authorized_key:
+        user: "{{ item }}"
+        key: "{{ lookup('file', '~/.ssh/id_ed25519.pub') }}"
+        state: present
+      loop:
+        - ansible
+        - root
+
+    - name: Setup sudo access
+      copy:
+        content: '%adm ALL=(ALL) NOPASSWD:ALL'
+        dest: /etc/sudoers.d/adm
+        validate: 'visudo -cf %s'
+        owner: root
+        group: root
+        mode: '0600'
+
+    - name: Limit root access to only ssh-key
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^PermitRootLogin'
+        line: 'PermitRootLogin without-password'
+      notify: restart ssh
+
+    - name: Copy unattended-upgrades configuration files in place.
+      template:
+        src: "{{ item }}.j2"
+        dest: "/etc/apt/apt.conf.d/{{ item }}"
+        owner: root
+        group: root
+        mode: 0644
+      with_items:
+        - 10periodic
+        - 50unattended-upgrades
+
+  handlers:
+    - name: restart ssh
+      service:
+        name: ssh
+        state: restarted
