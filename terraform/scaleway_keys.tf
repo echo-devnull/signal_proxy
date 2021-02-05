@@ -4,9 +4,10 @@
 ##
 # This is the access key for the correct project in scaleway
 variable "access_key" {
-  type      = string
-  default   = "notarealkey"
-  sensitive = true
+  type        = string
+  description = "Access key to get api access to Scaleway"
+  default     = "notarealkey"
+  sensitive   = true
 }
 
 ##
