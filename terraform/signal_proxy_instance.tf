@@ -29,10 +29,10 @@ resource "scaleway_instance_server" "signal_proxy_server" {
   security_group_id = scaleway_instance_security_group.signal_firewall.id
 }
 
-# ##
-# # Reverse DNS setup
-# # For when ip adress has been added to your DNS
-# resource "scaleway_instance_ip_reverse_dns" "reverse" {
-#   ip_id   = scaleway_instance_ip.signal_ip.id
-#   reverse = var.reverse_dns
-# }
+##
+# Reverse DNS setup
+# For when ip adress has been added to your DNS
+resource "scaleway_instance_ip_reverse_dns" "reverse" {
+  ip_id   = scaleway_instance_ip.signal_ip.id
+  reverse = var.reverse_dns
+}
