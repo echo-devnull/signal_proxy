@@ -50,7 +50,7 @@ resource "scaleway_instance_security_group" "signal_firewall" {
 ##
 # **FIXME**
 # It seems terraform scaleway loses the correct configureation when using these
-# modules. 
+# modules.
 
 # # Allow the world to access these ports
 # resource "scaleway_instance_security_group_rules" "allow_world_ports" {

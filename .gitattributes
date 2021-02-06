@@ -6,6 +6,7 @@ ansible/inventory/group_vars/all filter=git-crypt diff=git-crypt
 id_rsa filter=git-crypt diff=git-crypt
 *.pem filter=git-crypt diff=git-crypt
 *.tfstate filter=git-crypt diff=git-crypt
+*.tfstate.backup filter=git-crypt diff=git-crypt
 
 # never encrypt .gitattributes file
 .gitattributes !filter !diff
