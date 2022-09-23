@@ -1,7 +1,7 @@
 # Signal Proxy
 
 Running a Signal proxy for the people in Iran to connect and talk to each other again.
-Freedom os Speech is important.
+Freedom of Speech is important.
 
 
 ## Requirements
